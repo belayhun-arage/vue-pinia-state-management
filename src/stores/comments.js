@@ -8,15 +8,15 @@ export default useCommentStore = defineStore({
         comments:[],
     }),
     getters: {
-        getPostComments:()=>{
+        getPostComments:(state) => {
             const postStore = usePostStore();
-            return state.comments.filter((post)=>post.postId=postStore.postId)
+            return state.comments.filter((post) => post.postId === postStore.postId);
         }
     },
     actions: {
         async fetchComments(){
             this.comments = await fetch('https://jsonplaceholder.typicode.com/comments')
-            .then(response=>response.json())
+            .then(response=>response.json());
         },
 
     }
